@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Три ползунка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #E6E6FA; /* Нежно-лавандовый фон */
+        }
+        .slider-container {
+            margin: 20px 0;
+            width: 80%;
+        }
+        .slider-container label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 20px; /* Увеличенный размер ползунка */
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .15s ease-in-out;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px; /* Увеличенный размер ручки ползунка */
+            height: 30px;
+            background: #4CAF50; /* Зеленая ручка */
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            background: #4CAF50;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, red, yellow, green, blue, violet); /* Цветной трек */
+            height: 10px;
+            border-radius: 5px;
+        }
+        input[type="range"]::-moz-range-track {
+            background: linear-gradient(to right, red, yellow, green, blue, violet);
+            height: 10px;
+            border-radius: 5px;
+        }
+        .message {
+            display: none;
+            font-size: 24px;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <label for="slider1">Ариша:</label>
+        <input type="range" id="slider1" min="0" max="100" value="0">
+    </div>
+    <div class="slider-container">
+        <label for="slider2">проведи:</label>
+        <input type="range" id="slider2" min="0" max="100" value="0">
+    </div>
+    <div class="slider-container">
+        <label for="slider3">ползунки:</label>
+        <input type="range" id="slider3" min="0" max="100" value="0">
+    </div>
+    <div class="message" id="message">
+        Ариша, ты невероятная красотка!
+    </div>
+
+    <script>
+        const sliders = document.querySelectorAll('input[type="range"]');
+        const message = document.getElementById('message');
+
+        sliders.forEach(slider => {
+            slider.addEventListener('input', () => {
+                if (Array.from(sliders).every(slider => slider.value > 0)) {
+                    message.style.display = 'block';
+                } else {
+                    message.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
